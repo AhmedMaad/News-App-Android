@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "255781374068",
+    "project_id": "news-app-courzerve",
+    "storage_bucket": "news-app-courzerve.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:255781374068:android:937522f690feb131cde921",
+        "android_client_info": {
+          "package_name": "com.maad.newsapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "255781374068-cqprcp80ufgj4ohn1q66s3do7l248nok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAENAfnfFmmNXXCOcHC04yPNRDiV74LwQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "255781374068-cqprcp80ufgj4ohn1q66s3do7l248nok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
