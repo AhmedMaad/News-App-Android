@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.espresso.idling.CountingIdlingResource;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,11 +15,14 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 
-
 public class MainActivity extends AppCompatActivity {
 
     private String country;
     private String sentCat;
+    //We will increment the idlingResource till the data loads and then decrements it in order
+    //to test our recycler view when the data is returned via our oberver
+    public CountingIdlingResource idlingResource
+            = new CountingIdlingResource("Loader");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,46 +32,17 @@ public class MainActivity extends AppCompatActivity {
         country = getSharedPreferences("settings", MODE_PRIVATE).getString("country", "us");
         sentCat = getIntent().getStringExtra("cat");
 
-
+        idlingResource.increment();
         NewsViewModel viewModel = new ViewModelProvider(this).get(NewsViewModel.class);
         viewModel.getNews(sentCat, country).observe(this, new Observer<NewsModel>() {
             @Override
             public void onChanged(NewsModel newsModel) {
                 showList(newsModel.getArticles());
+                idlingResource.decrement();
             }
         });
     }
 
-    /* private void loadData() {
-         ProgressBar progressBar = findViewById(R.id.pb);
-         progressBar.setVisibility(View.VISIBLE);
-         Retrofit retrofit = new Retrofit
-                 .Builder()
-                 .baseUrl("https://newsapi.org")
-                 .addConverterFactory(GsonConverterFactory.create())
-                 .build();
-
-         CallableInterface callable = retrofit.create(CallableInterface.class);
-         Call<NewsModel> newsModelCall = callable.getNews(sentCat, country);
-
-         newsModelCall.enqueue(new Callback<NewsModel>() {
-             @Override
-             public void onResponse(Call<NewsModel> call, Response<NewsModel> response) {
-                 progressBar.setVisibility(View.INVISIBLE);
-                 NewsModel newsModel = response.body();
-                 Log.d("json", "Response: " + newsModel.getArticles().get(0).getUrlToImage());
-                 ArrayList<Article> articles = newsModel.getArticles();
-                 showList(articles);
-             }
-
-             @Override
-             public void onFailure(Call<NewsModel> call, Throwable t) {
-                 progressBar.setVisibility(View.INVISIBLE);
-                 Log.d("json", "Error: " + t.getMessage());
-             }
-         });
-     }
- */
     private void showList(ArrayList<Article> articles) {
         RecyclerView recyclerView = findViewById(R.id.rv);
         LinearLayoutManager manager = new LinearLayoutManager(this);

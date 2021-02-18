@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">News Application</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="settings">Settings</string>
+    <string name="article_title"> %s … </string>
 </resources>

@@ -12,11 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginActivity" android:label="Login"/>
-        <activity android:name=".SignUpActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/login" />
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/signup" />
         <activity
             android:name=".SettingsActivity"
-            android:label="Settings" />
+            android:label="@string/settings" />
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".SplashActivity"
@@ -29,10 +33,10 @@
             android:theme="@style/MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />

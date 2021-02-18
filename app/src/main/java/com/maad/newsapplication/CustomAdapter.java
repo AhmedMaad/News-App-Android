@@ -3,7 +3,6 @@ package com.maad.newsapplication;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +20,8 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    private Activity activity;
-    private ArrayList<Article> articles;
+    private final Activity activity;
+    private final ArrayList<Article> articles;
 
     public CustomAdapter(Activity activity, ArrayList<Article> articles) {
         this.activity = activity;
@@ -34,13 +33,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = activity.getLayoutInflater();
         View v = inflater.inflate(R.layout.news_list_item, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(v);
-        return myViewHolder;
+        return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.textView.setText(articles.get(position).getTitle().substring(0, 25) + "...");
+        String title = articles.get(position).getTitle().substring(0, 25);
+        holder.textView.setText(activity.getString(R.string.article_title, title));
         String imageLink = articles.get(position).getUrlToImage();
         Log.d("json", "Link: " + imageLink);
         if (imageLink != null)
@@ -70,9 +69,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private CardView cardView;
-        private ImageView imageView;
-        private TextView textView;
+        private final CardView cardView;
+        private final ImageView imageView;
+        private final TextView textView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
