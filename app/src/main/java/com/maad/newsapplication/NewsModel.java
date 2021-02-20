@@ -6,13 +6,19 @@ public class NewsModel {
 
     private ArrayList<Article> articles;
 
+    private int totalResults;
+
     public ArrayList<Article> getArticles() {
         return articles;
+    }
+
+    public int getTotalResults() {
+        return totalResults;
     }
 }
 
 
-class Article{
+class Article {
 
     private String title;
     private String url;

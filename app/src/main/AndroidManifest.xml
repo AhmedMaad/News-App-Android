@@ -26,10 +26,10 @@
             android:name=".SplashActivity"
             android:label="Available Categories" />
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:label="News App" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".MainActivity"
             android:theme="@style/MySplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -58,4 +58,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
 
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
+    implementation "androidx.paging:paging-runtime:2.1.2"
 }
